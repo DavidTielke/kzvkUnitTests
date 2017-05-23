@@ -21,6 +21,11 @@ namespace EventsUndDelegates
          
         public void Kippen()
         {
+            if (Status == FensterStatus.Geschlossen)
+            {
+                Öffnen();
+            }
+
             Status = FensterStatus.Gekippt;
             Console.WriteLine($"Fenster: {Name} wurde gekippt.");
             OnZustandgeaendert();
@@ -35,6 +40,11 @@ namespace EventsUndDelegates
 
         public void Schließen()
         {
+            if (Status == FensterStatus.Gekippt)
+            {
+                Öffnen();
+            }
+
             Status = FensterStatus.Geschlossen;
             Console.WriteLine($"Fenster: {Name} wurde geschlossen.");
             OnZustandgeaendert();
