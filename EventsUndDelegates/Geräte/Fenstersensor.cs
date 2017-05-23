@@ -1,15 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EventsUndDelegates
+namespace EventsUndDelegates.Geräte
 {
-    public class Fenstersensor : IGeraet 
+    public class Fenstersensor : IGerät
     {
+        private FensterStatus _status;
         public string Name { get; set; }
-        public FensterStatus Status { get; set; }
+
+        public FensterStatus Status
+        {
+            get { return _status; }
+            private set
+            {
+                LetzterStatus = _status;
+                _status = value;
+                OnZustandgeaendert();
+                Console.WriteLine($"Fenster: {Name} wurde {value.ToString().ToLower()}.");
+            }
+        }
+
+        public FensterStatus LetzterStatus { get; private set; }
 
 
         public event NeuerMesswertHandler Zustandgeaendert;
@@ -18,7 +28,7 @@ namespace EventsUndDelegates
         {
             this.Zustandgeaendert?.Invoke(this);
         }
-         
+
         public void Kippen()
         {
             if (Status == FensterStatus.Geschlossen)
@@ -27,15 +37,11 @@ namespace EventsUndDelegates
             }
 
             Status = FensterStatus.Gekippt;
-            Console.WriteLine($"Fenster: {Name} wurde gekippt.");
-            OnZustandgeaendert();
         }
 
         public void Öffnen()
         {
             Status = FensterStatus.Geöffnet;
-            Console.WriteLine($"Fenster: {Name} wurde geöffnet.");
-            OnZustandgeaendert();
         }
 
         public void Schließen()
@@ -46,17 +52,6 @@ namespace EventsUndDelegates
             }
 
             Status = FensterStatus.Geschlossen;
-            Console.WriteLine($"Fenster: {Name} wurde geschlossen.");
-            OnZustandgeaendert();
         }
-    }
-
-    public delegate void NeuerMesswertHandler(IGeraet gerät);
-
-    public enum FensterStatus
-    {
-        Geschlossen,
-        Gekippt,
-        Geöffnet
     }
 }

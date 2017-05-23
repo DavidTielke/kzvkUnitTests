@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EventsUndDelegates
+namespace EventsUndDelegates.Geräte
 {
-    public class Thermostat : IGeraet
+    public class Thermostat : IGerät
     {
         private double _temperatur;
         public string Name { get; set; }
@@ -20,12 +16,18 @@ namespace EventsUndDelegates
             {
                 _temperatur = value;
                 Console.WriteLine("Die Temperatur wurde auf " + value + " Grad gesetzt");
+                OnZustandgeaendert();
             }
         }
 
         public void Messen(double temp)
         {
             Temperatur = temp;
+        }
+
+        protected virtual void OnZustandgeaendert()
+        {
+            Zustandgeaendert?.Invoke(this);
         }
     }
 }

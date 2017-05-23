@@ -43,12 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fenstersensor.cs" />
-    <Compile Include="IGeraet.cs" />
+    <Compile Include="Adapter\DateTimeAdapter.cs" />
+    <Compile Include="Geräte\Fenstersensor.cs" />
+    <Compile Include="Geräte\FensterStatus.cs" />
+    <Compile Include="Geräte\IGerät.cs" />
+    <Compile Include="Regeln\IRegel.cs" />
+    <Compile Include="Geräte\NeuerMesswertHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Thermostat.cs" />
-    <Compile Include="Zentrale.cs" />
+    <Compile Include="Regeln\TemperaturRunterWennFensterAuf.cs" />
+    <Compile Include="Geräte\Thermostat.cs" />
+    <Compile Include="Geräte\Zentrale.cs" />
+    <Compile Include="Regeln\ZeitgesteuerteTemperatur.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

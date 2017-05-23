@@ -1,8 +1,7 @@
-﻿using System;
-using EventsUndDelegates;
+﻿using EventsUndDelegates.Geräte;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests
+namespace UnitTests.Geräte
 {
     [TestClass]
     public class FensterSensorTests
@@ -116,12 +115,55 @@ namespace UnitTests
             string events = "";
             var fensterstensor = new Fenstersensor();
             fensterstensor.Kippen();
-            fensterstensor.Zustandgeaendert += 
+            fensterstensor.Zustandgeaendert +=
                 s => events += ((Fenstersensor)s).Status.ToString();
 
             fensterstensor.Schließen();
 
             Assert.AreEqual("GeöffnetGeschlossen", events);
+        }
+
+        [TestMethod]
+        public void Öffnen_Geschlossen_LetzterStatusGeschlossen()
+        {
+            var fenstersensor = new Fenstersensor();
+
+            fenstersensor.Öffnen();
+
+            Assert.AreEqual(FensterStatus.Geschlossen, fenstersensor.LetzterStatus);
+        }
+
+        [TestMethod]
+        public void Kippen_Geöffnet_LetzterStatusGeöffnet()
+        {
+            var fenstersensor = new Fenstersensor();
+            fenstersensor.Öffnen();
+
+            fenstersensor.Kippen();
+
+            Assert.AreEqual(FensterStatus.Geöffnet, fenstersensor.LetzterStatus);
+        }
+
+        [TestMethod]
+        public void Geöffnet_Gekippt_LetzterStatusGekippt()
+        {
+            var fenstersensor = new Fenstersensor();
+            fenstersensor.Kippen();
+
+            fenstersensor.Öffnen();
+
+            Assert.AreEqual(FensterStatus.Gekippt, fenstersensor.LetzterStatus);
+        }
+
+        [TestMethod]
+        public void Geschlossen_GeÖffnet_LetzterStatusGeÖffnet()
+        {
+            var fenstersensor = new Fenstersensor();
+            fenstersensor.Öffnen();
+
+            fenstersensor.Schließen();
+
+            Assert.AreEqual(FensterStatus.Geöffnet, fenstersensor.LetzterStatus);
         }
     }
 }
