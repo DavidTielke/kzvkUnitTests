@@ -47,6 +47,7 @@
     <Compile Include="Geräte\Fenstersensor.cs" />
     <Compile Include="Geräte\FensterStatus.cs" />
     <Compile Include="Geräte\IGerät.cs" />
+    <Compile Include="Geräte\Zeitgeber.cs" />
     <Compile Include="Regeln\IRegel.cs" />
     <Compile Include="Geräte\NeuerMesswertHandler.cs" />
     <Compile Include="Program.cs" />

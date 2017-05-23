@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EventsUndDelegates.Adapter;
 using EventsUndDelegates.Geräte;
 using EventsUndDelegates.Regeln;
 
@@ -14,34 +15,32 @@ namespace EventsUndDelegates
         static void Main(string[] args)
         {
             var zenti = new Zentrale();
-            var tempmesser = new Thermostat();
-            var fenstersensor = new Fenstersensor();
-            var fenstersensor2 = new Fenstersensor();
-            var tempmesser2 = new Thermostat();
 
+            var tempmesser = new Thermostat();
             tempmesser.Name = "HZWZAlex";
-            fenstersensor.Name = "FSWZAlex";
-            fenstersensor2.Name = "FSSRAlex";
-            tempmesser2.Name = "HZSRAlex";
             tempmesser.Temperatur = 23;
-            tempmesser2.Temperatur = 23;
-            
-            zenti.Anmelden(tempmesser2);
-            zenti.Anmelden(fenstersensor2);
             zenti.Anmelden(tempmesser);
+
+            var fenstersensor = new Fenstersensor();
+            fenstersensor.Name = "FSWZAlex";
             zenti.Anmelden(fenstersensor);
 
-            var serverRaumRegel = new TemperaturRunterWennFensterAuf(fenstersensor2, tempmesser2);
-            zenti.RegelHinzufügen(serverRaumRegel);
-
+            var zeitgeber = new Zeitgeber();
+            zenti.Anmelden(zeitgeber);
+            
             var wohnzimmerRegel = new TemperaturRunterWennFensterAuf(fenstersensor, tempmesser);
             zenti.RegelHinzufügen(wohnzimmerRegel);
 
-            fenstersensor.Kippen();
-            fenstersensor.Schließen();
+
+            //fenstersensor.Kippen();
+            //fenstersensor.Schließen();
+
+            var von = DateTime.Now;
+            var bis = DateTime.Now.AddSeconds(10);
+            var zeitregel = new ZeitgesteuerteTemperatur(tempmesser, von, bis, 16, new DateTimeAdapter());
+            zenti.RegelHinzufügen(zeitregel);
+
             Console.ReadKey();
         }
-
-
     }
 }
