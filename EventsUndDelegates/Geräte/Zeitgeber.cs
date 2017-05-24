@@ -7,11 +7,9 @@ using System.Timers;
 
 namespace EventsUndDelegates.Geräte
 {
-    public class Zeitgeber : IGerät
+    public class Zeitgeber : GerätBase
     {
         private Timer _timer;
-        public string Name { get; set; }
-        public event NeuerMesswertHandler Zustandgeaendert;
 
         public Zeitgeber()
         {
@@ -23,12 +21,7 @@ namespace EventsUndDelegates.Geräte
 
         private void TimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
         {
-            OnZustandgeaendert(this);
-        }
-
-        protected virtual void OnZustandgeaendert(IGerät gerät)
-        {
-            Zustandgeaendert?.Invoke(gerät);
+            OnZustandgeaendert();
         }
     }
 }

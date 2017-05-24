@@ -54,7 +54,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Geräte\FensterSensorTests.cs" />
+    <Compile Include="Geräte\LampensensorTests.cs" />
+    <Compile Include="Geräte\SchalterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regeln\LampeGesteuertVonTasterTests.cs" />
+    <Compile Include="Regeln\LichtGehtNachZeitAusTests.cs" />
+    <Compile Include="Regeln\LampenaktorDimmenRegelTest.cs" />
     <Compile Include="Regeln\ZeitgesteuerteTemperaturTests.cs" />
     <Compile Include="Stubs\DateTimeStub.cs" />
     <Compile Include="Stubs\GerätStub.cs" />

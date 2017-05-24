@@ -44,14 +44,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapter\DateTimeAdapter.cs" />
+    <Compile Include="Adapter\IDateTimeAdapter.cs" />
     <Compile Include="Geräte\Fenstersensor.cs" />
     <Compile Include="Geräte\FensterStatus.cs" />
+    <Compile Include="Geräte\GerätBase.cs" />
     <Compile Include="Geräte\IGerät.cs" />
+    <Compile Include="Geräte\Lampenaktor.cs" />
+    <Compile Include="Geräte\Schalter.cs" />
     <Compile Include="Geräte\Zeitgeber.cs" />
+    <Compile Include="Logging\IILogMessageSource.cs" />
+    <Compile Include="Logging\LogEventArgs.cs" />
+    <Compile Include="Logging\ConsoleLogger.cs" />
+    <Compile Include="Logging\LogSchreiber.cs" />
     <Compile Include="Regeln\IRegel.cs" />
     <Compile Include="Geräte\NeuerMesswertHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regeln\LampeGesteuertVonTaster.cs" />
+    <Compile Include="Regeln\LampenaktorDimmenRegel.cs" />
+    <Compile Include="Regeln\LichtGehtNachZeitAus.cs" />
+    <Compile Include="Regeln\RegelBase.cs" />
     <Compile Include="Regeln\TemperaturRunterWennFensterAuf.cs" />
     <Compile Include="Geräte\Thermostat.cs" />
     <Compile Include="Geräte\Zentrale.cs" />

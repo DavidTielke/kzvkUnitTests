@@ -80,7 +80,7 @@ namespace UnitTests.Geräte
             zentrale.Anmelden(gerät);
             zentrale.RegelHinzufügen(regel);
 
-            gerät.OnZustandgeaendert();
+            gerät.EventAuslösen();
 
             Assert.IsTrue(regel.WurdeAngewendet);
         }
@@ -95,7 +95,7 @@ namespace UnitTests.Geräte
             zentrale.Anmelden(gerät);
             zentrale.RegelHinzufügen(regel);
 
-            gerät.OnZustandgeaendert();
+            gerät.EventAuslösen();
 
             Assert.IsFalse(regel.WurdeAngewendet);
         }
@@ -107,7 +107,7 @@ namespace UnitTests.Geräte
             var gerät = new GerätStub();
             zentrale.Anmelden(gerät);
 
-            gerät.OnZustandgeaendert();
+            gerät.EventAuslösen();
         }
     }
 }

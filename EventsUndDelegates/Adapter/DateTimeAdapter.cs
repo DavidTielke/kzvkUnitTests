@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace EventsUndDelegates.Adapter
 {
-    public interface IDateTimeAdapter
-    {
-        DateTime Now { get; }
-    }
-
     public class DateTimeAdapter : IDateTimeAdapter
     {
         public DateTime Now

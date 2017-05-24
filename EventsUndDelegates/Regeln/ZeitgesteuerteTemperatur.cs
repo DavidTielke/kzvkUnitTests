@@ -8,7 +8,7 @@ using EventsUndDelegates.Geräte;
 
 namespace EventsUndDelegates.Regeln
 {
-    public class ZeitgesteuerteTemperatur : IRegel
+    public class ZeitgesteuerteTemperatur : RegelBase
     {
         private readonly IDateTimeAdapter _dateTimeAdapter;
 
@@ -28,9 +28,9 @@ namespace EventsUndDelegates.Regeln
         internal double UrTemperatur { get; set; }
         public bool TempGeändert { get; set; }
 
-        public bool SollAngewendetWerden(IGerät gerät) => gerät is Zeitgeber;
+        public override bool SollAngewendetWerden(IGerät gerät) => gerät is Zeitgeber;
 
-        public void Anwenden()
+        public override void Anwenden()
         {
             var wurdeUrTempSchonGesetzt = Thermostat.Temperatur == Temperatur;
             var istInZeitraum = _dateTimeAdapter.Now >= Von && _dateTimeAdapter.Now <= Bis;

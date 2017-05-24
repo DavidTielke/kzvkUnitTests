@@ -7,14 +7,11 @@ using EventsUndDelegates.Geräte;
 
 namespace UnitTests.Stubs
 {
-    class GerätStub : IGerät
+    class GerätStub : GerätBase
     {
-        public string Name { get; set; }
-        public event NeuerMesswertHandler Zustandgeaendert;
-
-        public virtual void OnZustandgeaendert()
+        public void EventAuslösen()
         {
-            Zustandgeaendert?.Invoke(this);
+            base.OnZustandgeaendert();
         }
     }
 }

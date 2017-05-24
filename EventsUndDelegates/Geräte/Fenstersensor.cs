@@ -2,10 +2,9 @@
 
 namespace EventsUndDelegates.Geräte
 {
-    public class Fenstersensor : IGerät
+    public class Fenstersensor : GerätBase
     {
         private FensterStatus _status;
-        public string Name { get; set; }
 
         public FensterStatus Status
         {
@@ -15,19 +14,11 @@ namespace EventsUndDelegates.Geräte
                 LetzterStatus = _status;
                 _status = value;
                 OnZustandgeaendert();
-                Console.WriteLine($"Fenster: {Name} wurde {value.ToString().ToLower()}.");
+                OnLogEvent($"Fenster: {Name} wurde {value.ToString().ToLower()}.");
             }
         }
 
         public FensterStatus LetzterStatus { get; private set; }
-
-
-        public event NeuerMesswertHandler Zustandgeaendert;
-
-        protected virtual void OnZustandgeaendert()
-        {
-            this.Zustandgeaendert?.Invoke(this);
-        }
 
         public void Kippen()
         {

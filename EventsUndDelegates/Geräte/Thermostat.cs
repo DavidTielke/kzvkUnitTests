@@ -2,12 +2,9 @@
 
 namespace EventsUndDelegates.Geräte
 {
-    public class Thermostat : IGerät
+    public class Thermostat : GerätBase
     {
         private double _temperatur;
-        public string Name { get; set; }
-
-        public event NeuerMesswertHandler Zustandgeaendert;
 
         public double Temperatur
         {
@@ -15,7 +12,7 @@ namespace EventsUndDelegates.Geräte
             set
             {
                 _temperatur = value;
-                Console.WriteLine("Die Temperatur wurde auf " + value + " Grad gesetzt");
+                OnLogEvent("Die Temperatur wurde auf " + value + " Grad gesetzt");
                 OnZustandgeaendert();
             }
         }
@@ -23,11 +20,6 @@ namespace EventsUndDelegates.Geräte
         public void Messen(double temp)
         {
             Temperatur = temp;
-        }
-
-        protected virtual void OnZustandgeaendert()
-        {
-            Zustandgeaendert?.Invoke(this);
         }
     }
 }

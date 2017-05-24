@@ -8,17 +8,17 @@ using EventsUndDelegates.Regeln;
 
 namespace UnitTests.Stubs
 {
-    class RegelStub : IRegel
+    class RegelStub : RegelBase
     {
         public bool WurdeAngewendet { get; set; }
         public bool WirdAngewendet { get; set; } = true;
         
-        public bool SollAngewendetWerden(IGerät gerät)
+        public override bool SollAngewendetWerden(IGerät gerät)
         {
             return WirdAngewendet;
         }
 
-        public void Anwenden()
+        public override void Anwenden()
         {
             WurdeAngewendet = true;
         }

@@ -4,7 +4,7 @@ using EventsUndDelegates.Geräte;
 
 namespace EventsUndDelegates.Regeln
 {
-    public class TemperaturRunterWennFensterAuf : IRegel
+    public class TemperaturRunterWennFensterAuf : RegelBase
     {
         private readonly Fenstersensor _fenstersensor;
         private readonly Thermostat _tempmesser;
@@ -24,7 +24,7 @@ namespace EventsUndDelegates.Regeln
             _tempmesser = tempmesser;
         }
 
-        public bool SollAngewendetWerden(IGerät gerät)
+        public override bool SollAngewendetWerden(IGerät gerät)
         {
             if (gerät == null)
             {
@@ -33,7 +33,7 @@ namespace EventsUndDelegates.Regeln
             return gerät == _fenstersensor;
         }
 
-        public void Anwenden()
+        public override void Anwenden()
         {
             if (_fenstersensor.Status == FensterStatus.Geöffnet
                 && _fenstersensor.LetzterStatus == FensterStatus.Geschlossen)
